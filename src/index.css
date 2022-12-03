@@ -3,3 +3,7 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+a:hover {
+	color: rgb(0, 156, 0) !important;
+}

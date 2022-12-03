@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
-import { getBreedImage } from '../services/dogApi';
+import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 import { FadeLoader } from 'react-spinners';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useBreeds } from '../hooks/useBreeds';
 
 type Props = {
 	breed: string;
@@ -10,19 +10,16 @@ type Props = {
 };
 
 export const BreedCard = ({ breed, subBreed }: Props) => {
-	const [image, setImage] = useState<string | null>(null);
+	const myBreeds = useBreeds();
+	const [lengthTeam, setLengthTeam] = useState(5);
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		getBreedImage(breed).then((res) => {
-			setImage(res.message);
-		});
-	}, []);
-
 	return (
-		<Card sx={{ backgroundColor: 'black', border: '1px solid #ffffff65' }}>
-			{!image ? (
-				<FadeLoader />
+		<Card sx={{ backgroundColor: 'black', border: '1px solid #ffffff65', overflow: 'visible' }}>
+			{myBreeds?.breedsImages[breed] === null ? (
+				<Box sx={{ width: '300px', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+					<FadeLoader color={'white'} />
+				</Box>
 			) : (
 				<CardMedia
 					sx={{ objectFit: 'scale-down', cursor: 'pointer', backgroundColor: 'black' }}
@@ -32,13 +29,13 @@ export const BreedCard = ({ breed, subBreed }: Props) => {
 					component="img"
 					height="300"
 					image={
-						image ||
+						myBreeds?.breedsImages[breed] ||
 						'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'
 					}
 					alt={`${breed} image`}
 				/>
 			)}
-			<CardContent sx={{ display: 'flex', backgroundColor: '#253a44' }}>
+			<CardContent sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#253a44' }}>
 				<Typography
 					sx={{ color: 'white', textTransform: 'capitalize', mr: 1 }}
 					gutterBottom
@@ -46,14 +43,25 @@ export const BreedCard = ({ breed, subBreed }: Props) => {
 					component="div">
 					{breed}
 				</Typography>
-				{subBreed && (
-					<Typography
-						sx={{ color: 'white', textTransform: 'capitalize' }}
-						gutterBottom
-						variant="h5"
-						component="div">
-						{`- ${subBreed}`}
-					</Typography>
+				{lengthTeam > 0 && (
+					<Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+						<Typography
+							sx={{ mr: 2, color: '#ffffff' }}
+							fontWeight="500">{`Team size`}</Typography>
+						<Box
+							sx={{
+								width: '30px',
+								height: '30px',
+								borderRadius: '5px',
+								color: 'white',
+								backgroundColor: '#1976d2',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}>
+							<Typography fontWeight="600">{lengthTeam}</Typography>
+						</Box>
+					</Box>
 				)}
 			</CardContent>
 		</Card>

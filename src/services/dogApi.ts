@@ -3,7 +3,7 @@ const baseUrl = import.meta.env.VITE_API_DOG_URL;
 export const getAllBreeds = async () => {
 	const response = await fetch(`${baseUrl}/breeds/list/all`);
 	const data = await response.json();
-	return data;
+	return data.message;
 };
 
 export const getSubBreeds = async (breed: string) => {
@@ -12,10 +12,23 @@ export const getSubBreeds = async (breed: string) => {
 	return data;
 };
 
-export const getBreedImage = async (breed: string) => {
-	const response = await fetch(`${baseUrl}/breed/${breed}/images/random`);
+export const getBreedImageByQuery = async ({ queryKey }: { queryKey: string[] }) => {
+	if (queryKey[1] === undefined) return;
+	const response = await fetch(`${baseUrl}/breed/${queryKey[1]}/images/random`);
 	const data = await response.json();
 	return data;
+};
+
+/* export const getBreedImageByBreed = async (breed: string) => {
+	const response = await fetch(`${baseUrl}/breed/${breed}/images/random`);
+	const data = await response.json();
+	return data.message;
+}; */
+
+export const getImageByBreed = async (breed: string): Promise<string> => {
+	const response = await fetch(`${baseUrl}/breed/${breed}/images`);
+	const data = await response.json();
+	return data.message;
 };
 
 export const getAllImagesByBreed = async (breed: string) => {
