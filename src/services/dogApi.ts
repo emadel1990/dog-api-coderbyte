@@ -20,13 +20,15 @@ export const getBreedImageByQuery = async ({ queryKey }: { queryKey: string[] })
 };
 
 export const getImageByBreed = async (breed: string): Promise<string> => {
-	const response = await fetch(`${baseUrl}/breed/${breed}/images`);
+	const newBreed = breed.replace('-', '/').replace(/\s/g, '');
+
+	const response = await fetch(`${baseUrl}/breed/${newBreed}/images`);
 	const data = await response.json();
 	return data.message;
 };
 
-export const getAllImagesByBreed = async (breed: string) => {
+/* export const getAllImagesByBreed = async (breed: string) => {
 	const response = await fetch(`${baseUrl}/breed/${breed}/images`);
 	const data = await response.json();
 	return data;
-};
+}; */

@@ -2,7 +2,7 @@ import { Typography, Box } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SingleBreedList } from '../../components/SingleBreedList';
-import { getAllImagesByBreed } from '../../services/dogApi';
+import { getImageByBreed } from '../../services/dogApi';
 
 export const SingleBreed = () => {
 	const [breed, setBreed] = useState<string[] | null>(null);
@@ -10,8 +10,8 @@ export const SingleBreed = () => {
 
 	useEffect(() => {
 		if (name) {
-			getAllImagesByBreed(name).then((res) => {
-				setBreed(res.message);
+			getImageByBreed(name).then((res) => {
+				setBreed(res);
 			});
 		}
 	}, [name]);

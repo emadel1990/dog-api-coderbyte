@@ -19,6 +19,7 @@ export const BreedCard = ({ breed }: Props) => {
 				setLengthTeam(value.team.length);
 			}
 		});
+		console.log(`breed/${breed}`);
 	}, [breed]);
 
 	return (
@@ -31,7 +32,7 @@ export const BreedCard = ({ breed }: Props) => {
 				<CardMedia
 					sx={{ objectFit: 'scale-down', cursor: 'pointer', backgroundColor: 'black' }}
 					onClick={() => {
-						navigate(`/breed/${breed}`);
+						navigate(`/breed/${breed.split('/')[0]} - ${breed.split('/')[1]}`);
 					}}
 					component="img"
 					height="300"
