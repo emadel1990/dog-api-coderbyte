@@ -26,10 +26,10 @@ export const SingleBreedList = ({ breedList, name }: Props) => {
 			setPageNumber={setPageNumber}
 			setPageSize={setPageSize}>
 			<Grid
-				sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+				sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', pl: 4, pr: 4 }}
 				container
 				spacing={2}>
-				{Paginate(breedList, pageSize, pageNumber).map((breed) => (
+				{Paginate(breedList, pageSize, pageNumber).map((breed, index) => (
 					<Grid
 						item
 						xs={12}
@@ -38,6 +38,7 @@ export const SingleBreedList = ({ breedList, name }: Props) => {
 						lg={3}
 						key={`${breed}${name}`}>
 						<BreedImage
+							key={index + 1}
 							image={breed}
 							name={name}
 						/>

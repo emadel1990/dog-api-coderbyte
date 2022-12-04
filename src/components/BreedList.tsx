@@ -37,8 +37,8 @@ export const BreedList = () => {
 	const flatBreedListFn = () => {
 		const arr: string[] = [];
 		Object.keys(breedList).forEach((breed) => {
-			if (breedList[breed].length > 0) {
-				breedList[breed].forEach((subBreed) => {
+			if (breedList[breed]?.length > 0) {
+				breedList[breed]?.forEach((subBreed) => {
 					arr.push(`${breed}/${subBreed}`);
 				});
 			} else {

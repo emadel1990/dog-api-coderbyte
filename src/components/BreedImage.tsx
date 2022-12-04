@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import ConfettiExplosion from 'react-confetti-explosion';
 import { toast } from 'react-toastify';
 import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/material';
 import { FadeLoader } from 'react-spinners';
@@ -12,11 +11,8 @@ type Props = {
 };
 
 export const BreedImage = ({ image, name }: Props) => {
-	const [isExploding, setIsExploding] = useState(false);
 	const [isInMyTeam, setIsInMyTeam] = useState(false);
 	const myBreeds = useBreeds();
-
-	/* const isInMyTeam = myBreeds?.myTeam.some((breed: IMyTeam) => breed.breed === name); */
 
 	useEffect(() => {
 		myBreeds?.myTeam.forEach((breed: IMyTeam) => {
@@ -26,19 +22,12 @@ export const BreedImage = ({ image, name }: Props) => {
 		});
 	}, [myBreeds?.myTeam]);
 
-	useEffect(() => {
-		const timeOutID = setTimeout(() => {
-			setIsExploding(false);
-		}, 1000);
-		return () => clearTimeout(timeOutID);
-	}, [isExploding]);
-
 	const handleAddToMyTeam = () => {
 		if (image && name) {
 			const currentTeam = [...myBreeds?.myTeam];
 			const breedExists = currentTeam.find((item: IMyTeam) => item.breed === name);
 			if (!breedExists) {
-				setIsExploding(true);
+				toast.success('Breed added to your team!');
 				const newBreed: IMyTeam = {
 					breed: name,
 					team: [image]
@@ -50,7 +39,7 @@ export const BreedImage = ({ image, name }: Props) => {
 				currentTeam.map((item: IMyTeam) => {
 					if (item.breed === name) {
 						if (item.team.length < 3) {
-							setIsExploding(true);
+							toast.success('Breed added to your team!');
 							item.team.push(image);
 							myBreeds?.setMyTeam(currentTeam);
 							return;
@@ -80,7 +69,7 @@ export const BreedImage = ({ image, name }: Props) => {
 		<Card
 			sx={{
 				backgroundColor: 'black',
-				border: `2px solid ${!isInMyTeam ? '#005e00' : '#b98800'}`,
+				/* border: `2px solid ${!isInMyTeam ? '#005e00' : '#b98800'}`, */
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center'
@@ -92,24 +81,18 @@ export const BreedImage = ({ image, name }: Props) => {
 				/>
 			) : (
 				<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
-					{isExploding && (
-						<ConfettiExplosion
-							duration={13000}
-							floorHeight={1500}
-							floorWidth={2000}
-						/>
-					)}
 					<CardMedia
-						sx={{ objectFit: 'scale-down', backgroundColor: 'black' }}
+						sx={{ objectFit: 'scale-down' }}
 						component="img"
 						height="300"
+						width={90}
 						image={
 							image ||
 							'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'
 						}
 						alt={`${image}`}
 					/>
-					<CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
+					<CardContent sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#45889192' }}>
 						{!isInMyTeam ? (
 							<Button
 								variant="contained"
@@ -120,7 +103,7 @@ export const BreedImage = ({ image, name }: Props) => {
 						) : (
 							<Button
 								variant="contained"
-								color="warning"
+								color="secondary"
 								onClick={handleRemoveFromMyTeam}>
 								Remove from my team
 							</Button>

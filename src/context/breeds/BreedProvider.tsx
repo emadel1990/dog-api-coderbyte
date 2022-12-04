@@ -20,10 +20,8 @@ export const BreedProvider = ({ children }: { children: ReactNode }) => {
 	});
 
 	useEffect(() => {
-		/* 		console.log('breedsData', breedsData); */
 		if (breedsData) {
 			setBreeds(breedsData);
-			/* console.log(searchBreedsImages(breedsData)); */
 			setBreedsImages(searchBreedsImages(breedsData));
 			searchEveryBreed(searchBreedsImages(breedsData));
 		}

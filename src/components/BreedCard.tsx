@@ -6,13 +6,20 @@ import { useBreeds } from '../hooks/useBreeds';
 
 type Props = {
 	breed: string;
-	subBreed?: string;
 };
 
-export const BreedCard = ({ breed, subBreed }: Props) => {
+export const BreedCard = ({ breed }: Props) => {
 	const myBreeds = useBreeds();
-	const [lengthTeam, setLengthTeam] = useState(5);
+	const [lengthTeam, setLengthTeam] = useState(0);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		Object.entries(myBreeds?.myTeam).forEach(([key, value]) => {
+			if (value.breed === breed) {
+				setLengthTeam(value.team.length);
+			}
+		});
+	}, [breed]);
 
 	return (
 		<Card sx={{ backgroundColor: 'black', border: '1px solid #ffffff65', overflow: 'visible' }}>
@@ -43,7 +50,7 @@ export const BreedCard = ({ breed, subBreed }: Props) => {
 					component="div">
 					{breed}
 				</Typography>
-				{lengthTeam > 0 && (
+				{lengthTeam > 0 ? (
 					<Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
 						<Typography
 							sx={{ mr: 2, color: '#ffffff' }}
@@ -62,6 +69,8 @@ export const BreedCard = ({ breed, subBreed }: Props) => {
 							<Typography fontWeight="600">{lengthTeam}</Typography>
 						</Box>
 					</Box>
+				) : (
+					<Box style={{ height: '30px' }}></Box>
 				)}
 			</CardContent>
 		</Card>

@@ -19,12 +19,6 @@ export const getBreedImageByQuery = async ({ queryKey }: { queryKey: string[] })
 	return data;
 };
 
-/* export const getBreedImageByBreed = async (breed: string) => {
-	const response = await fetch(`${baseUrl}/breed/${breed}/images/random`);
-	const data = await response.json();
-	return data.message;
-}; */
-
 export const getImageByBreed = async (breed: string): Promise<string> => {
 	const response = await fetch(`${baseUrl}/breed/${breed}/images`);
 	const data = await response.json();
