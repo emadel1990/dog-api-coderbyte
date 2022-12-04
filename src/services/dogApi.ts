@@ -20,8 +20,12 @@ export const getBreedImageByQuery = async ({ queryKey }: { queryKey: string[] })
 };
 
 export const getImageByBreed = async (breed: string): Promise<string> => {
-	const newBreed = breed.replace('-', '/').replace(/\s/g, '');
-
+	let newBreed;
+	if (breed.replace(/\s/g, '').split('-')[1] === undefined) {
+		newBreed = breed.replace(/\s/g, '').split('-')[0];
+	} else {
+		newBreed = breed.replace('-', '/').replace(/\s/g, '');
+	}
 	const response = await fetch(`${baseUrl}/breed/${newBreed}/images`);
 	const data = await response.json();
 	return data.message;

@@ -31,7 +31,11 @@ export const BreedCard = ({ breed }: Props) => {
 				<CardMedia
 					sx={{ objectFit: 'scale-down', cursor: 'pointer', backgroundColor: 'black' }}
 					onClick={() => {
-						navigate(`/breed/${breed.split('/')[0]} - ${breed.split('/')[1]}`);
+						if (breed.split('/')[1] !== undefined) {
+							navigate(`/breed/${breed.split('/')[0]} - ${breed.split('/')[1]}`);
+						} else {
+							navigate(`/breed/${breed}`);
+						}
 					}}
 					component="img"
 					height="300"
