@@ -26,6 +26,7 @@ export const SingleBreedList = ({ breedList, name }: Props) => {
 			setPageNumber={setPageNumber}
 			setPageSize={setPageSize}>
 			<Grid
+				id="single-breed-list"
 				sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', pl: 4, pr: 4 }}
 				container
 				spacing={2}>

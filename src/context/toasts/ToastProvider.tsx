@@ -5,10 +5,11 @@ import { ToastContext } from './ToastContext';
 import { IToastProvider } from '../../interfaces/IToast';
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
+	console.log(window.innerWidth);
 	const toastDefConfig: IToastProvider = {
 		position: 'bottom-right',
 		type: 'default',
-		autoClose: 4500,
+		autoClose: 2500,
 		hideProgressBar: false,
 		closeOnClick: true,
 		rtl: false,

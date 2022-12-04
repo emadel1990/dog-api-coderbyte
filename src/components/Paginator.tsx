@@ -18,7 +18,7 @@ export const Paginator = ({ breedList, children, pageSize, setPageSize, pageNumb
 	}
 
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingLeft: '5%', paddingRight: '5%' }}>
+		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 			<select
 				style={{ height: '30px', width: '120px', cursor: 'pointer', margin: '10px' }}
 				value={pageSize}
