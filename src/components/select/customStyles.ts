@@ -5,7 +5,7 @@ export const customStyles = {
 		fontFamily: 'Segoe UI',
 		fontSize: '13px',
 		maxWidth: '340px',
-		width: '300px',
+		width: '290px',
 		padding: 10,
 		borderBottom: '0.2px solid #0000005e'
 	}),

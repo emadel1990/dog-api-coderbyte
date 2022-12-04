@@ -43,7 +43,7 @@ export const BreedSelect = () => {
 			options.push({ value: index + 1, label: breed });
 		});
 		setBreedItems(options);
-	}, []);
+	}, [breedContext.breeds]);
 
 	useEffect(() => {
 		if (selectedBreed?.label) {
