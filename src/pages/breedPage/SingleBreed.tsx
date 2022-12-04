@@ -10,7 +10,7 @@ export const SingleBreed = () => {
 
 	useEffect(() => {
 		if (name) {
-			getImageByBreed(name).then((res) => {
+			getImageByBreed(name).then((res: any) => {
 				setBreed(res);
 			});
 		}
