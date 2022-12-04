@@ -2,7 +2,7 @@ import style from './toast.module.css';
 import { ReactNode } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { ToastContext } from './ToastContext';
-import { IToastProvider } from '../../interfaces/IToast';
+import { IToastProvider } from 'interfaces/IToast';
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
 	const toastDefConfig: IToastProvider = {

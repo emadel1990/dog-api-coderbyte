@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Breed, SingleBreed } from 'pages';
+import { SingleBreed, Breed } from '@/pages';
 
 export const Views = () => {
 	return (

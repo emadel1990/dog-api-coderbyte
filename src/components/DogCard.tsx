@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/material';
 import { FadeLoader } from 'react-spinners';
-import { useBreeds } from '../hooks/useBreeds';
-import { IMyTeam } from '../interfaces/IBreedsContext';
+import { useBreeds } from 'hooks/useBreeds';
+import { IMyTeam } from 'interfaces/IBreedsContext';
 
 type Props = {
 	image: string | null;

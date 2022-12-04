@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import { DogCard } from './DogCard';
-import Paginate from '../utils/paginator';
+import Paginate from 'utils/paginator';
 import { Paginator } from './Paginator';
 import { Loading } from './Loading';
 

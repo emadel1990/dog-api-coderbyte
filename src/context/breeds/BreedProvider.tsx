@@ -1,9 +1,9 @@
 import { ReactNode, useState, useEffect } from 'react';
 import { BreedContext } from './BreedContext';
-import { IMyTeam, IBreedsImages } from '../../interfaces/IBreedsContext';
+import { IMyTeam, IBreedsImages } from 'interfaces/IBreedsContext';
 import { useQuery } from '@tanstack/react-query';
-import { getAllBreeds, getImageByBreed } from '../../services/dogApi';
-import { IBreedsList } from '../../interfaces/IBreeds';
+import { IBreedsList } from 'interfaces/IBreeds';
+import { getAllBreeds, getImageByBreed } from 'services/dogApi';
 
 export const BreedProvider = ({ children }: { children: ReactNode }) => {
 	const [myTeam, setMyTeam] = useState<IMyTeam[]>([]);

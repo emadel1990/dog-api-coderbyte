@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
-import { IBreedsList } from '../interfaces/IBreeds';
+import { IBreedsList } from 'interfaces/IBreeds';
 import { BreedCard } from './BreedCard';
 import { Paginator } from './Paginator';
-import Paginate from '../utils/paginator';
+import Paginate from 'utils/paginator';
 import { Loading } from './Loading';
-import { useBreeds } from '../hooks/useBreeds';
+import { useBreeds } from 'hooks/useBreeds';
 
 export const BreedList = () => {
 	const myBreeds = useBreeds();
