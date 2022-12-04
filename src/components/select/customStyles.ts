@@ -4,8 +4,8 @@ export const customStyles = {
 		color: state.isSelected ? '#000000a7' : '#000000',
 		fontFamily: 'Segoe UI',
 		fontSize: '13px',
-		maxWidth: '380px',
-		width: '380px',
+		maxWidth: '340px',
+		width: '300px',
 		padding: 10,
 		borderBottom: '0.2px solid #0000005e'
 	}),
@@ -27,6 +27,6 @@ export const customStyles = {
 		height: '45px',
 		maxWidth: '600px',
 		marginBottom: '10px',
-		width: '400px'
+		width: '310px'
 	})
 };
