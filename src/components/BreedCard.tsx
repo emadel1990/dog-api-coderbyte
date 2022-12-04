@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 import { FadeLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
-import { useBreeds } from '../hooks/useBreeds';
+import { useBreeds } from 'hooks/useBreeds';
 
 type Props = {
 	breed: string;
@@ -24,7 +24,7 @@ export const BreedCard = ({ breed }: Props) => {
 	return (
 		<Card sx={{ backgroundColor: 'black', border: '1px solid #ffffff65', overflow: 'visible' }}>
 			{myBreeds?.breedsImages[breed] === null ? (
-				<Box sx={{ width: '300px', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				<Box sx={{ width: '100%', minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 					<FadeLoader color={'white'} />
 				</Box>
 			) : (

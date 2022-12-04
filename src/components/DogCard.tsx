@@ -10,7 +10,7 @@ type Props = {
 	name: string;
 };
 
-export const BreedImage = ({ image, name }: Props) => {
+export const DogCard = ({ image, name }: Props) => {
 	const [isInMyTeam, setIsInMyTeam] = useState(false);
 	const myBreeds = useBreeds();
 
@@ -22,7 +22,20 @@ export const BreedImage = ({ image, name }: Props) => {
 		});
 	}, [myBreeds?.myTeam]);
 
+	const isMaximumTeam = (): boolean => {
+		let contador = 0;
+		const currentTeam = [...myBreeds?.myTeam];
+		currentTeam.map((breed) => {
+			contador += breed.team.length;
+		});
+		return contador <= 9;
+	};
+
 	const handleAddToMyTeam = () => {
+		if (!isMaximumTeam()) {
+			toast.error('You have reached the maximum(10) number of dogs in your team');
+			return;
+		}
 		if (image && name) {
 			const currentTeam = [...myBreeds?.myTeam];
 			const breedExists = currentTeam.find((item: IMyTeam) => item.breed === name);
@@ -69,7 +82,6 @@ export const BreedImage = ({ image, name }: Props) => {
 		<Card
 			sx={{
 				backgroundColor: 'black',
-				/* border: `2px solid ${!isInMyTeam ? '#005e00' : '#b98800'}`, */
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center'

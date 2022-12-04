@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
-import { BreedImage } from './BreedImage';
+import { DogCard } from './DogCard';
 import Paginate from '../utils/paginator';
 import { Paginator } from './Paginator';
 import { Loading } from './Loading';
@@ -10,7 +10,7 @@ type Props = {
 	name: string;
 };
 
-export const SingleBreedList = ({ breedList, name }: Props) => {
+export const DogList = ({ breedList, name }: Props) => {
 	const [pageSize, setPageSize] = useState<number>(10);
 	const [pageNumber, setPageNumber] = useState<number>(1);
 
@@ -38,7 +38,7 @@ export const SingleBreedList = ({ breedList, name }: Props) => {
 						md={4}
 						lg={3}
 						key={`${breed}${name}`}>
-						<BreedImage
+						<DogCard
 							key={index + 1}
 							image={breed}
 							name={name}

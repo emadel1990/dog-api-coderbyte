@@ -1,7 +1,7 @@
 import { Typography, Box } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { SingleBreedList } from '../../components/SingleBreedList';
+import { DogList } from '../../components/DogList';
 import { getImageByBreed } from '../../services/dogApi';
 
 export const SingleBreed = () => {
@@ -29,7 +29,7 @@ export const SingleBreed = () => {
 				Back to breeds
 			</Link>
 			{breed && (
-				<SingleBreedList
+				<DogList
 					breedList={breed}
 					name={name || ''}
 				/>
