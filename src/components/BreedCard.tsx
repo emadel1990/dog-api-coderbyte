@@ -19,7 +19,6 @@ export const BreedCard = ({ breed }: Props) => {
 				setLengthTeam(value.team.length);
 			}
 		});
-		console.log(`breed/${breed}`);
 	}, [breed]);
 
 	return (
