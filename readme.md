@@ -4,7 +4,8 @@ This is a small app that uses the [Dog API](https://dog.ceo/dog-api/)
 
 ## Installation
 
-Clone the repo and run `yarn install`
+Clone the repo and run `yarn install`<br>
+Rename the `.env.example` file to `.env`
 
 ## Brief description
 
