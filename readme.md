@@ -66,4 +66,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 This app is deployed on [Netlify](https://netlify.com/)
 
-You can check it out [here](https://dog-api-coderbyte.netlify.app/)
+You can check it out [here](https://dog-api-greencode.netlify.app/)
