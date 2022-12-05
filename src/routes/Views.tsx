@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { SingleBreed, Breed } from '@/pages';
+import { SingleBreed, Breed, MyTeam } from '@/pages';
 
 export const Views = () => {
 	return (
@@ -20,6 +20,10 @@ export const Views = () => {
 			<Route
 				path="/breed/:name"
 				element={<SingleBreed />}
+			/>
+			<Route
+				path="/myTeam"
+				element={<MyTeam />}
 			/>
 		</Routes>
 	);

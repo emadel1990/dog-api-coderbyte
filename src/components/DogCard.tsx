@@ -4,6 +4,7 @@ import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/mate
 import { FadeLoader } from 'react-spinners';
 import { useBreeds } from 'hooks/useBreeds';
 import { IMyTeam } from 'interfaces/IBreedsContext';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
 	image: string | null;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export const DogCard = ({ image, name }: Props) => {
+	const location = useLocation();
 	const [isInMyTeam, setIsInMyTeam] = useState(false);
 	const myBreeds = useBreeds();
 
@@ -104,7 +106,16 @@ export const DogCard = ({ image, name }: Props) => {
 						}
 						alt={`${image}`}
 					/>
-					<CardContent sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#45889192' }}>
+					<CardContent sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', backgroundColor: '#45889192' }}>
+						{location.pathname.includes('myTeam') && (
+							<Box sx={{ width: '100%' }}>
+								<Typography
+									variant="h5"
+									sx={{ textAlign: 'center', color: 'white', fontFamily: 'Segoe UI', mb: 2 }}>{`${name.charAt(0).toUpperCase()}${name.slice(
+									1
+								)}`}</Typography>
+							</Box>
+						)}
 						{!isInMyTeam ? (
 							<Button
 								variant="contained"
