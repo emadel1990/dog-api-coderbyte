@@ -4,7 +4,6 @@ import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/mate
 import { FadeLoader } from 'react-spinners';
 import { useBreeds } from 'hooks/useBreeds';
 import { IMyTeam } from 'interfaces/IBreedsContext';
-import { useLocation } from 'react-router-dom';
 
 type Props = {
 	image: string | null;
@@ -12,7 +11,6 @@ type Props = {
 };
 
 export const DogCard = ({ image, name }: Props) => {
-	const location = useLocation();
 	const [isInMyTeam, setIsInMyTeam] = useState(false);
 	const myBreeds = useBreeds();
 
@@ -22,7 +20,7 @@ export const DogCard = ({ image, name }: Props) => {
 				setIsInMyTeam(breed.team.some((breed: string) => breed === image));
 			}
 		});
-	}, [myBreeds?.myTeam]);
+	}, [myBreeds?.myTeam, isInMyTeam]);
 
 	const isMaximumTeam = (): boolean => {
 		let contador = 0;
@@ -71,7 +69,7 @@ export const DogCard = ({ image, name }: Props) => {
 	const handleRemoveFromMyTeam = () => {
 		if (image && name) {
 			const currentTeam = [...myBreeds?.myTeam];
-			currentTeam.map((item: IMyTeam) => {
+			currentTeam.map((item: IMyTeam, index) => {
 				if (item.breed === name) {
 					item.team = item.team.filter((breed: string) => breed !== image);
 				}
@@ -96,7 +94,7 @@ export const DogCard = ({ image, name }: Props) => {
 			) : (
 				<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
 					<CardMedia
-						sx={{ objectFit: 'scale-down' }}
+						sx={{ objectFit: 'scale-down', minWidth: '300px' }}
 						component="img"
 						height="300"
 						width={90}
@@ -107,15 +105,6 @@ export const DogCard = ({ image, name }: Props) => {
 						alt={`${image}`}
 					/>
 					<CardContent sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', backgroundColor: '#45889192' }}>
-						{location.pathname.includes('myTeam') && (
-							<Box sx={{ width: '100%' }}>
-								<Typography
-									variant="h5"
-									sx={{ textAlign: 'center', color: 'white', fontFamily: 'Segoe UI', mb: 2 }}>{`${name.charAt(0).toUpperCase()}${name.slice(
-									1
-								)}`}</Typography>
-							</Box>
-						)}
 						{!isInMyTeam ? (
 							<Button
 								variant="contained"

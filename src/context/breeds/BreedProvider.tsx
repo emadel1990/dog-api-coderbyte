@@ -35,6 +35,12 @@ export const BreedProvider = ({ children }: { children: ReactNode }) => {
 	}, []);
 
 	useEffect(() => {
+		myTeam.forEach((item) => {
+			if (item.team.length === 0) {
+				const newTeam = myTeam.filter((team) => team.breed !== item.breed);
+				setMyTeam(newTeam);
+			}
+		});
 		localStorage.setItem('myTeam', JSON.stringify(myTeam));
 	}, [myTeam]);
 

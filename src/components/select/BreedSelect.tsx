@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { customStyles } from './customStyles';
 import { FormControl } from '@mui/material';
-import lodash from 'lodash';
+import lodash, { isArray } from 'lodash';
 import { useBreeds } from '../../hooks/useBreeds';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,6 +40,11 @@ export const BreedSelect = () => {
 	useEffect(() => {
 		const options: ISelectItems[] = [];
 		Object.keys(breedContext.breeds).forEach((breed, index) => {
+			if (isArray(breedContext.breeds[breed]) && breedContext.breeds[breed].length > 0) {
+				breedContext.breeds[breed].map((subBreed) => {
+					options.push({ value: index, label: `${breed}/${subBreed}` });
+				});
+			}
 			options.push({ value: index + 1, label: breed });
 		});
 		setBreedItems(options);
@@ -47,7 +52,11 @@ export const BreedSelect = () => {
 
 	useEffect(() => {
 		if (selectedBreed?.label) {
-			navigate(`/breed/${selectedBreed.label}`);
+			if (selectedBreed.label.split('/')[1] !== undefined) {
+				navigate(`/breed/${selectedBreed.label.split('/')[0]} - ${selectedBreed.label.split('/')[1]}`);
+			} else {
+				navigate(`/breed/${selectedBreed.label}`);
+			}
 		}
 	}, [selectedBreed]);
 
