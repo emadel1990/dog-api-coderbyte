@@ -1,4 +1,4 @@
-# Dog API - Coderbyte challenge
+# Dog API - Coderbyte GreenCode challenge
 
 This is a small app that uses the [Dog API](https://dog.ceo/dog-api/)
 
